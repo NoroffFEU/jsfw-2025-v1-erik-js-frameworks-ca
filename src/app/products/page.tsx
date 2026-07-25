@@ -1,6 +1,6 @@
 
-import { ProductList } from '../../features/products/components/products/ProductList';
+import { ProductCards } from '../../features/products/components/products/ProductCards';
 
 export default function ProductsPage() {
-  return <ProductList />;
+  return <ProductCards />;
 }
