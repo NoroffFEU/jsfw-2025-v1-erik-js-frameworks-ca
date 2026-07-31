@@ -2,13 +2,22 @@
 
 interface ProductFilterProps {
   tags: string[]
-  selectedTags: string[] | null;
+  selectedTags: string[];
   onTagSelect: (tag: string) => void;
+  onClearFilters?: () => void;
 }
 
-export const ProductFilter = ({ tags, selectedTags, onTagSelect }: ProductFilterProps) => {
+export const ProductFilter = ({ tags, selectedTags, onTagSelect, onClearFilters }: ProductFilterProps) => {
   return (
     <div className="flex flex-wrap gap-2 mb-4">
+       {onClearFilters && (
+        <button
+          className="px-3 py-1 rounded-full text-sm bg-red-500 text-white"
+          onClick={onClearFilters}
+        >
+          Show All Products
+        </button>
+      )}
       {tags.map((tag) => (
         <span
           key={tag}
@@ -20,6 +29,7 @@ export const ProductFilter = ({ tags, selectedTags, onTagSelect }: ProductFilter
           {tag.at(0)?.toUpperCase() + tag.slice(1)}
         </span>
       ))}
+    
     </div>
   );
 };

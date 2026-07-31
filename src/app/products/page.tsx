@@ -46,7 +46,7 @@ const filteredByTags = filteredProducts.filter((product) =>
 }
  return (
   <>
-    <ProductFilter tags={filterList} selectedTags={selectedTags} onTagSelect={handleTagSelect} />
+    <ProductFilter tags={filterList} selectedTags={selectedTags} onTagSelect={handleTagSelect} onClearFilters={() => setSelectedTags([])} />
     <ProductCards products={filteredByTags} />
   </>
   );
