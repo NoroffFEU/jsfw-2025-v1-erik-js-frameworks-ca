@@ -4,6 +4,7 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { NavLink } from "./NavLink";
 import { MobileNav } from "./MobileNav";
+import { CartNavLink } from "./CartNavLink";
 
 export function Header() {
   const searchParams = useSearchParams();
@@ -40,7 +41,7 @@ export function Header() {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/products">Products</NavLink>
           <NavLink href="/about">Contact</NavLink>
-          <NavLink href="/cart">Cart</NavLink>
+          <CartNavLink />
         </nav>
         <MobileNav />
       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "./NavLink";
+import { CartNavLink } from "./CartNavLink";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ export function MobileNav() {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/products">Products</NavLink>
           <NavLink href="/about">Contact</NavLink>
-          <NavLink href="/cart">Cart</NavLink>
+          <CartNavLink />
         </nav>
       )}
     </div>
