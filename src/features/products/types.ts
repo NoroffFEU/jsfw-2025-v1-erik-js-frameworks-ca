@@ -36,3 +36,4 @@ export interface OnlineShopResponse {
   data: Product[];
   meta: Meta;
 }
+

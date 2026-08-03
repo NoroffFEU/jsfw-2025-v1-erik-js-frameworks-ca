@@ -6,7 +6,7 @@ import { useProducts } from '../../features/products/hooks';
 import { ProductCards } from '../../features/products/components/ProductCards';
 import { ProductFilter } from '../../features/products/components/ProductFilter';
 import { GetFilterList } from '../../features/products/utils';
-
+import { useCartStore } from '../../features/cart/store';
 
 
 export default function ProductsPage() {
@@ -15,6 +15,7 @@ export default function ProductsPage() {
   const search = searchParams.get('search') || '';
   const { filterList } = GetFilterList(data ?? []);
 const [selectedTags, setSelectedTags] = useState<string[]>([]);
+const addItem = useCartStore((state) => state.addItem);
 
   const handleTagSelect = (tag: string) => {
     if (selectedTags.includes(tag)) {
@@ -47,7 +48,7 @@ const filteredByTags = filteredProducts.filter((product) =>
  return (
   <>
     <ProductFilter tags={filterList} selectedTags={selectedTags} onTagSelect={handleTagSelect} onClearFilters={() => setSelectedTags([])} />
-    <ProductCards products={filteredByTags} />
+    <ProductCards products={filteredByTags} onAddToCart={addItem} />
   </>
   );
 }
