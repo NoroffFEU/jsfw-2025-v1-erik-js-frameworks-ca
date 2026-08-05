@@ -1,7 +1,3 @@
-import React from "react";
-
-const ProductInfo = () => {
-  return <div> placeholder for product page</div>;
-};
-
-export default ProductInfo;
+export default function ProductDetailPage() {
+  return <div>Produktdetalj kommer her</div>;
+}
