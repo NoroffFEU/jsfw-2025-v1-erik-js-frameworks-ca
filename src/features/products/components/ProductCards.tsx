@@ -21,11 +21,11 @@ export const ProductCards = ({ products, onAddToCart }: ProductCardsProps) => {
   const beenRated = (product: Product) => product.rating > 0;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 gap-y-8">
       {products.map((product) => (
         <div
           key={product.id}
-          className="group flex flex-col overflow-hidden rounded-xl m-4 border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+          className="group flex flex-col  overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md cursor-pointer"
         >
           <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
             <Image

@@ -14,7 +14,7 @@ export const ProductFilter = ({
   onClearFilters,
 }: ProductFilterProps) => {
   return (
-    <div className="flex flex-wrap gap-2 m-4">
+    <div className="flex flex-wrap gap-2 mb-4">
       {onClearFilters && (
         <button
           className="px-3 py-1 rounded-full text-sm bg-green-800 text-white cursor-pointer hover:bg-green-700 transition-colors font-bold"
@@ -26,7 +26,7 @@ export const ProductFilter = ({
       {tags.map((tag) => (
         <span
           key={tag}
-          className={`px-3 py-1 rounded-full text-sm cursor-pointer hover:opacity-80 ${
+          className={`px-3 py-1 rounded-full text-sm  cursor-pointer hover:opacity-80 ${
             selectedTags?.includes(tag)
               ? "bg-gray-600 text-white"
               : "bg-gray-200 text-gray-800"
