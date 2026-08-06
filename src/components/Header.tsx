@@ -38,8 +38,7 @@ export function Header() {
           className="mt-4 p-2 rounded text-black"
         />
         <nav aria-label="Main navigation" className="hidden md:flex gap-4">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/products">Products</NavLink>
+          <NavLink href="/">Products</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <CartNavLink />
         </nav>
