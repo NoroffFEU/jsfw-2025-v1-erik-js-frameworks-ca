@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { NavLink } from "./NavLink";
 import { MobileNav } from "./MobileNav";
@@ -10,7 +10,6 @@ import { Search } from "lucide-react";
 export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const searchParams = useSearchParams();
-  const pathname = usePathname();
   const router = useRouter();
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
@@ -23,8 +22,8 @@ export function Header() {
     } else {
       params.delete("search");
     }
-
-    router.replace(`${pathname}?${params.toString()}`);
+    const queryString = params.toString();
+    router.push(queryString ? `/?${queryString}` : "/");
   };
 
   return (
