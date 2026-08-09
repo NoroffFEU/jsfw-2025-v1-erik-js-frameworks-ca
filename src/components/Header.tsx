@@ -28,11 +28,12 @@ export function Header() {
   };
 
   return (
-    <header className="py-8 mb-6 border-b border-gray-200 bg-gray-100 sticky top-0 z-50">
-      <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 items-center gap-4 px-4">
+    <header className=" mb-6 border-b border-gray-200 bg-gray-100 sticky top-0 z-50 py-4 sm:py-8">
+      <div className="container mx-auto grid  md:grid-cols-3 items-center gap-4 px-4">
+        <MobileNav />
         <h1 className="text-2xl font-bold sm:text-3xl">FrameShop</h1>
 
-        <div className="relative w-full max-w-xs justify-self-center hidden md:block">
+        <div className="relative w-full max-w-xs justify-self-center  md:block">
           <Search
             size={16}
             className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -55,9 +56,7 @@ export function Header() {
           <CartNavLink />
         </nav>
 
-        <div className="justify-self-end md:hidden">
-          <MobileNav />
-        </div>
+        <div className="justify-self-end md:hidden"></div>
       </div>
     </header>
   );

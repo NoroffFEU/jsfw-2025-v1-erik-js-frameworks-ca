@@ -96,7 +96,9 @@ export default function ProductDetailPage() {
                   {review.rating}
                 </p>
 
-                <p className="text-sm text-gray-500">"{review.description}"</p>
+                <p className="text-sm text-gray-500">
+                  &quot;{review.description}&quot;
+                </p>
               </div>
             ))}
           </div>

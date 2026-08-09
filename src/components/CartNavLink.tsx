@@ -11,10 +11,10 @@ export function CartNavLink() {
 
   return (
     <NavLink href="/cart">
-      <span className="flex items-center gap-1 bg-green-200 px-2 py-1.5 rounded-full text-green-800 border border-green-600 hover:bg-green-300 transition-colors">
-        <ShoppingCart size={22} color="rgb(22 101 52)" />
+      <span className="relative flex items-center justify-center w-10 h-10 bg-green-200 rounded-full border border-green-600 hover:bg-green-300 transition-colors">
+        <ShoppingCart size={20} color="rgb(22 101 52)" />
         {cartCount > 0 && (
-          <span className="bg-green-600 text-white font-bold rounded-full px-2 py-1 text-xs">
+          <span className="absolute -top-1 -right-1 bg-green-600 text-white font-bold rounded-full w-5 h-5 flex items-center justify-center text-xs">
             {cartCount}
           </span>
         )}
