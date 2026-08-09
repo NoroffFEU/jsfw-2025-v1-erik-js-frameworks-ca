@@ -8,6 +8,7 @@ import { CartNavLink } from "./CartNavLink";
 import { Search } from "lucide-react";
 
 export function Header() {
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -24,14 +25,19 @@ export function Header() {
     }
 
     router.replace(`${pathname}?${params.toString()}`);
-    console.log("parm value changed:", params.toString());
   };
 
   return (
     <header className=" mb-6 border-b border-gray-200 bg-gray-100 sticky top-0 z-50 py-4 sm:py-8">
       <div className="container mx-auto grid  md:grid-cols-3 items-center gap-4 px-4">
-        <MobileNav />
-        <h1 className="text-2xl font-bold sm:text-3xl">FrameShop</h1>
+        <MobileNav isOpen={isMobileNavOpen} setIsOpen={setIsMobileNavOpen} />
+        {!isMobileNavOpen && (
+          <h1
+            className={`text-2xl text-center text-gray-700 text-shadow-xs font-bold ${isMobileNavOpen ? "md:block hidden" : "block"}`}
+          >
+            FrameShop
+          </h1>
+        )}
 
         <div className="relative w-full max-w-xs justify-self-center  md:block">
           <Search

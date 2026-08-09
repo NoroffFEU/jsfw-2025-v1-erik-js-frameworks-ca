@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "./NavLink";
 import { CartNavLink } from "./CartNavLink";
 
-export function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false);
+interface MobileNavProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
 
+export function MobileNav({ isOpen, setIsOpen }: MobileNavProps) {
   return (
     <div className="md:hidden">
       <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle navigation">
@@ -17,7 +19,7 @@ export function MobileNav() {
       {isOpen && (
         <nav
           aria-label="Mobile navigation"
-          className="flex flex-col gap-2 my-5 justify-center items-center"
+          className="flex flex-col gap-2 my-5 justify-center items-center hover:text-green-800"
         >
           <CartNavLink />
           <NavLink href="/">Products</NavLink>
