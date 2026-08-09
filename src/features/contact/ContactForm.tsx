@@ -33,7 +33,7 @@ export default function ContactForm() {
       setSubjectError("Subject is required");
       return false;
     } else if (subject.trim().length < 3) {
-      setSubjectError("Subject must be at least 3 characters long");
+      setSubjectError("Must be at least 3 characters long");
       return false;
     }
     setSubjectError("");
@@ -95,7 +95,7 @@ export default function ContactForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
+    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4">
       <div className="mb-4">
         <label
           htmlFor="fullName"
@@ -104,6 +104,7 @@ export default function ContactForm() {
           Full Name
         </label>
         <input
+          className="w-full border border-gray-300 rounded px-3 py-2"
           type="text"
           id="fullName"
           name="fullName"
@@ -120,6 +121,7 @@ export default function ContactForm() {
           Subject
         </label>
         <input
+          className="w-full border border-gray-300 rounded px-3 py-2"
           type="text"
           id="subject"
           name="subject"
@@ -138,6 +140,7 @@ export default function ContactForm() {
           Email
         </label>
         <input
+          className="w-full border border-gray-300 rounded px-3 py-2"
           type="email"
           id="email"
           name="email"
@@ -154,6 +157,7 @@ export default function ContactForm() {
           Message
         </label>
         <textarea
+          className="w-full border border-gray-300 rounded px-3 py-2"
           id="message"
           name="message"
           value={formData.message}
