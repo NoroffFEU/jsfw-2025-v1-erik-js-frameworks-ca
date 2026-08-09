@@ -17,7 +17,7 @@ export function MobileNav() {
       {isOpen && (
         <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
           <NavLink href="/">Products</NavLink>
-          <NavLink href="/about">Contact</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
           <CartNavLink />
         </nav>
       )}
