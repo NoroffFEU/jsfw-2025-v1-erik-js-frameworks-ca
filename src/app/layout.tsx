@@ -40,7 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
-          <main className="flex-1  items-center flex flex-col bg-gray-50 dark:bg-gray-900">
+          <main className="flex-1  items-center flex flex-col bg-gray-50">
             <Providers>{children}</Providers>
           </main>
           <Footer />
