@@ -7,6 +7,7 @@ import { ProductCards } from "../features/products/components/ProductCards";
 import { ProductFilter } from "../features/products/components/ProductFilter";
 import { GetFilterList } from "../features/products/utils";
 import { useCartStore } from "../features/cart/store";
+import { useToastStore } from "../features/toast/toast";
 
 export default function ProductsPage() {
   const { data, isLoading, error } = useProducts();
@@ -15,6 +16,7 @@ export default function ProductsPage() {
   const { filterList } = GetFilterList(data ?? []);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const addItem = useCartStore((state) => state.addItem);
+  const addToast = useToastStore((state) => state.addToast);
 
   const handleTagSelect = (tag: string) => {
     if (selectedTags.includes(tag)) {
@@ -48,6 +50,13 @@ export default function ProductsPage() {
   if (filteredByTags.length === 0) {
     return <p className="text-center mt-8">Sorry. No products found.</p>;
   }
+
+  const handleAddToCart = (productId: string) => {
+    const product = data?.find((p) => p.id === productId);
+    addItem(productId);
+    if (product) addToast(`${product.title} added to cart`);
+  };
+
   return (
     <>
       {" "}
@@ -58,7 +67,7 @@ export default function ProductsPage() {
           onTagSelect={handleTagSelect}
           onClearFilters={() => setSelectedTags([])}
         />
-        <ProductCards products={filteredByTags} onAddToCart={addItem} />
+        <ProductCards products={filteredByTags} onAddToCart={handleAddToCart} />
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FormError } from "../../components/FormError";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -17,12 +18,18 @@ export default function ContactForm() {
   const [emailError, setEmailError] = useState("");
   const [messageError, setMessageError] = useState("");
 
+  const isFormValid =
+    formData.fullName.trim().length >= 3 &&
+    formData.subject.trim().length >= 3 &&
+    EMAIL_REGEX.test(formData.email) &&
+    formData.message.trim().length >= 10;
+
   const validateFullName = (fullName: string) => {
     if (!fullName.trim()) {
       setNameError("Full name is required");
       return false;
     } else if (fullName.trim().length < 3) {
-      setNameError("Full name must be at least 3 characters long");
+      setNameError("Must be at least 3 characters long");
       return false;
     }
     setNameError("");
@@ -95,11 +102,11 @@ export default function ContactForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4">
+    <form onSubmit={handleSubmit} className="max-w-3xl min-w-full mx-auto p-4">
       <div className="mb-4">
         <label
           htmlFor="fullName"
-          className="block text-gray-700 font-bold mb-2"
+          className="block  text-gray-700 font-bold mb-2"
         >
           Full Name
         </label>
@@ -114,7 +121,7 @@ export default function ContactForm() {
           }
           onBlur={(e) => handleBlur("fullName", e.target.value)}
         />
-        {nameError && <p className="text-red-500 text-sm mt-1">{nameError}</p>}
+        {nameError && <FormError message={nameError} />}
       </div>
       <div className="mb-4">
         <label htmlFor="subject" className="block text-gray-700 font-bold mb-2">
@@ -131,9 +138,7 @@ export default function ContactForm() {
           }
           onBlur={(e) => handleBlur("subject", e.target.value)}
         />
-        {subjectError && (
-          <p className="text-red-500 text-sm mt-1">{subjectError}</p>
-        )}
+        {subjectError && <FormError message={subjectError} />}
       </div>
       <div className="mb-4">
         <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
@@ -148,9 +153,7 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           onBlur={(e) => handleBlur("email", e.target.value)}
         />
-        {emailError && (
-          <p className="text-red-500 text-sm mt-1">{emailError}</p>
-        )}
+        {emailError && <FormError message={emailError} />}
       </div>
       <div className="mb-4">
         <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
@@ -166,16 +169,21 @@ export default function ContactForm() {
           }
           onBlur={(e) => handleBlur("message", e.target.value)}
         />
-        {messageError && (
-          <p className="text-red-500 text-sm mt-1">{messageError}</p>
-        )}
+        {messageError && <FormError message={messageError} />}
       </div>
-      <button
-        type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-      >
-        Submit
-      </button>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          className={`px-4 py-2 text-white w-full md:w-[50%] rounded transition-colors duration-300 ${
+            !isFormValid
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-green-800 hover:bg-green-600 cursor-pointer"
+          }`}
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 }
