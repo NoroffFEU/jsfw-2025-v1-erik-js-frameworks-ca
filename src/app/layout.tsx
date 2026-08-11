@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FrameShop",
   description: "E-commerce application build with js frameworks",
+  other: {
+    "color-scheme": "light",
+  },
 };
 
 export default function RootLayout({
