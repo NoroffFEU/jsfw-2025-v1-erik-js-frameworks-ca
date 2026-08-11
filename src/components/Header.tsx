@@ -6,6 +6,7 @@ import { NavLink } from "./NavLink";
 import { MobileNav } from "./MobileNav";
 import { CartNavLink } from "./CartNavLink";
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 export function Header() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -31,11 +32,13 @@ export function Header() {
       <div className="container mx-auto grid  md:grid-cols-3 items-center gap-4 px-4">
         <MobileNav isOpen={isMobileNavOpen} setIsOpen={setIsMobileNavOpen} />
         {!isMobileNavOpen && (
-          <h1
-            className={`text-2xl text-center text-gray-700 text-shadow-xs font-bold ${isMobileNavOpen ? "md:block hidden" : "block"}`}
-          >
-            FrameShop
-          </h1>
+          <Link href="/">
+            <h1
+              className={`text-2xl text-center text-gray-700 text-shadow-xs font-bold ${isMobileNavOpen ? "md:block hidden" : "block"}`}
+            >
+              FrameShop
+            </h1>
+          </Link>
         )}
 
         <div className="relative w-full max-w-xs justify-self-center  md:block">
@@ -54,7 +57,7 @@ export function Header() {
 
         <nav
           aria-label="Main navigation"
-          className="hidden md:flex items-center justify-end gap-4"
+          className="hidden md:flex items-center justify-end gap-6 "
         >
           <NavLink href="/">Products</NavLink>
           <NavLink href="/contact">Contact</NavLink>
