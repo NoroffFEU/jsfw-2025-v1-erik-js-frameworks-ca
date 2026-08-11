@@ -33,9 +33,7 @@ export function Header() {
         <MobileNav isOpen={isMobileNavOpen} setIsOpen={setIsMobileNavOpen} />
         {!isMobileNavOpen && (
           <Link href="/">
-            <h1
-              className={`text-2xl text-center text-gray-700 text-shadow-xs font-bold ${isMobileNavOpen ? "md:block hidden" : "block"}`}
-            >
+            <h1 className="sm:text-3xl text-center text-gray-800 tracking-widest font-light uppercase">
               FrameShop
             </h1>
           </Link>
