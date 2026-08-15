@@ -4,12 +4,14 @@ import { useProducts } from "../../../features/products/hooks";
 import Image from "next/image";
 import { useCartStore } from "../../../features/cart/store";
 import { Star } from "lucide-react";
+import { useToastStore } from "../../../features/toast/toast";
 
 export default function ProductDetailPage() {
   const { data, isLoading, error } = useProducts();
   const params = useParams();
   const { id } = params;
   const addItem = useCartStore((state) => state.addItem);
+  const addToast = useToastStore((state) => state.addToast);
 
   if (isLoading) {
     return <p className="text-center mt-8">Getting your product...</p>;
@@ -59,7 +61,10 @@ export default function ProductDetailPage() {
             </p>
           )}
           <button
-            onClick={() => addItem(product.id)}
+            onClick={() => {
+              addItem(product.id);
+              addToast(`${product.title} added to your cart`);
+            }}
             className="mt-4 bg-green-700 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors font-bold  cursor-pointer"
           >
             Add to Cart
