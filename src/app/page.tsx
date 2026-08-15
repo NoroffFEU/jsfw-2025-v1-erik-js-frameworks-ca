@@ -54,7 +54,7 @@ export default function ProductsPage() {
   const handleAddToCart = (productId: string) => {
     const product = data?.find((p) => p.id === productId);
     addItem(productId);
-    if (product) addToast(`${product.title} added to cart`);
+    if (product) addToast(`${product.title} added to your cart`);
   };
 
   return (
