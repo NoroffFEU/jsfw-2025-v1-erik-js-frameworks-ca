@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { FormError } from "../../components/FormError";
+import { useToastStore } from "../toast/toast";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactForm() {
+  const addToast = useToastStore((state) => state.addToast);
   const [formData, setFormData] = useState({
     fullName: "",
     subject: "",
@@ -96,9 +98,19 @@ export default function ContactForm() {
     const isSubjectValid = validateSubject(formData.subject);
     const isEmailValid = validateEmail(formData.email);
     const isMessageValid = validateMessage(formData.message);
+    const clearForm = () => {
+      setFormData({
+        fullName: "",
+        subject: "",
+        email: "",
+        message: "",
+      });
+    };
 
     if (isFullNameValid && isSubjectValid && isEmailValid && isMessageValid) {
       console.log("Form submitted:", formData);
+      addToast("Form submitted successfully");
+      clearForm();
     }
   };
   return (
