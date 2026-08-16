@@ -4,11 +4,13 @@ import { useCartStore } from "../store";
 import { useProducts } from "../../products/hooks";
 import CartItem from "./CartItem";
 import { calculateTotalPrice, calculateTotalDiscountedPrice } from "../utils";
+import { useToastStore } from "../../toast/toast";
 
 export const ListCartItems = () => {
   const cartItems = useCartStore((state) => state.items);
   const removeItem = useCartStore((state) => state.removeItem);
   const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const addToast = useToastStore((state) => state.addToast);
 
   const { data: products, isLoading } = useProducts();
 
@@ -25,6 +27,12 @@ export const ListCartItems = () => {
     cartItemsWithProducts,
   );
   const totalSavings = totalPrice - totalDiscountedPrice;
+
+  const handleRemoveItem = (productId: string) => {
+    const product = products?.find((p) => p.id === productId);
+    removeItem(productId);
+    if (product) addToast(`${product.title} removed from your cart`);
+  };
 
   return (
     <div className="space-y-4">
@@ -43,7 +51,7 @@ export const ListCartItems = () => {
           key={product.id}
           product={product}
           quantity={quantity}
-          onRemove={removeItem}
+          onRemove={handleRemoveItem}
           onUpdateQuantity={updateQuantity}
         />
       ))}
