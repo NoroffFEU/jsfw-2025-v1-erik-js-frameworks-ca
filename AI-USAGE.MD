@@ -1,5 +1,10 @@
 AI Usage Log
 
+16.08
+Tool: Claude
+Purpose: Formulate readme.md
+Outcome: Updated readme file
+
 15.08
 Tool: Claude
 Purpose: Translate AI-USAGE.MD from norwegian to english
